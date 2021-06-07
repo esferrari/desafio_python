@@ -1,0 +1,19 @@
+version: "3.7"
+
+services:
+    database:
+        image: postgres
+        container_name: database_linx
+        restart: always
+        ports:
+            - 5432:5432
+        environment:
+            - POSTGRES_USER=linx
+            - POSTGRES_PASSWORD=linx123 
+            - POSTGRES_DB=weather
+        volumes: 
+            - ./docker_postgres_init.sql:/docker-entrypoint-initdb.d/docker_postgres_init.sql        
+
+volumes:
+    pgdata:
+        driver: local
